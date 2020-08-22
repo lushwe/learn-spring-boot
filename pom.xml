@@ -62,6 +62,7 @@
         <module>spring-boot-jdbc</module>
         <module>spring-boot-data-jpa</module>
         <module>spring-boot-data-redis</module>
+        <module>spring-boot-data-mybatis</module>
     </modules>
 
     <name>learn-spring-boot</name>
