@@ -1,5 +1,6 @@
 package com.lushwe.redis;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -7,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
  * 说明：启动类
@@ -32,12 +35,17 @@ public class RedisBootstrap {
 
         @Override
         public void run(ApplicationArguments args) throws Exception {
-            testGet();
-            testIncrement();
-            testBit();
+//            testGet();
+//            testIncrement();
+//            testBit();
+            testHash();
+//            testZSet();
         }
     }
 
+    /**
+     * 测试 String set/get
+     */
     private void testGet() {
 
         String key = "learn:redis:lushwe";
@@ -50,6 +58,9 @@ public class RedisBootstrap {
         stringRedisTemplate.delete(key);
     }
 
+    /**
+     * 测试 String increment
+     */
     private void testIncrement() {
 
         String key = "learn:redis:lushwe:in";
@@ -64,9 +75,12 @@ public class RedisBootstrap {
         stringRedisTemplate.delete(key);
     }
 
+    /**
+     * 测试 String bit
+     */
     private void testBit() {
 
-        String key = "sys:001";
+        String key = "system:string:bit:001";
 
         // bitmap
         Boolean setBit = stringRedisTemplate.opsForValue().setBit(key, 100, true);
@@ -82,5 +96,41 @@ public class RedisBootstrap {
 
         // 删除
         stringRedisTemplate.delete(key);
+    }
+
+    /**
+     * 测试 Hash
+     */
+    private void testHash() {
+        String key = "system:hash:user";
+//        stringRedisTemplate.opsForHash().put(key, "id", "1");
+//        stringRedisTemplate.opsForHash().put(key, "name", "zhangsan");
+//        stringRedisTemplate.opsForHash().put(key, "age", "24");
+
+        System.out.println("user.id=" + stringRedisTemplate.opsForHash().get(key, "id"));
+        System.out.println("user.name=" + stringRedisTemplate.opsForHash().get(key, "name"));
+        System.out.println("user.age=" + stringRedisTemplate.opsForHash().get(key, "age"));
+
+        Map<Object, Object> entries = stringRedisTemplate.opsForHash().entries(key);
+        System.out.println("entries=" + JSON.toJSONString(entries, true));
+    }
+
+    /**
+     * 测试 ZSet
+     */
+    private void testZSet() {
+        String key = "system:zset";
+//        stringRedisTemplate.opsForZSet().add(key, "z1", 1);
+//        stringRedisTemplate.opsForZSet().add(key, "z2", 2);
+//        stringRedisTemplate.opsForZSet().add(key, "z3", 3);
+
+        System.out.println("z1.score=" + stringRedisTemplate.opsForZSet().score(key, "z1"));
+
+        System.out.println("z1.rank=" + stringRedisTemplate.opsForZSet().rank(key, "z1"));
+        System.out.println("z2.rank=" + stringRedisTemplate.opsForZSet().rank(key, "z2"));
+        System.out.println("z3.rank=" + stringRedisTemplate.opsForZSet().rank(key, "z3"));
+        System.out.println("z3.reverseRank=" + stringRedisTemplate.opsForZSet().reverseRank(key, "z1"));
+        System.out.println("z3.reverseRank=" + stringRedisTemplate.opsForZSet().reverseRank(key, "z2"));
+        System.out.println("z3.reverseRank=" + stringRedisTemplate.opsForZSet().reverseRank(key, "z3"));
     }
 }
