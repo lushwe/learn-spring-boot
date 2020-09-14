@@ -1,0 +1,6 @@
+# FailureAnalyzer 配置
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+com.lushwe.spring.boot.diagnostics.UnknownErrorFailureAnalyzer
+# FailureAnalysisReporter 配置
+org.springframework.boot.diagnostics.FailureAnalysisReporter=\
+com.lushwe.spring.boot.diagnostics.ConsoleFailureAnalyzerReporter
