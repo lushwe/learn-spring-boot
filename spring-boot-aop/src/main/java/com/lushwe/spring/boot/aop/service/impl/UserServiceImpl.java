@@ -1,7 +1,9 @@
 package com.lushwe.spring.boot.aop.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.lushwe.spring.boot.aop.annotation.OperationLog;
 import com.lushwe.spring.boot.aop.domain.UserDTO;
+import com.lushwe.spring.boot.aop.enums.OperationLogType;
 import com.lushwe.spring.boot.aop.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,12 +19,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserServiceImpl implements UserService {
 
+    @OperationLog(type = OperationLogType.INSERT)
     @Override
     public void insertUser(UserDTO userDTO) {
 
         log.info("新增用户，请求参数：{}", JSON.toJSONString(userDTO));
     }
 
+    @OperationLog(type = OperationLogType.UPDATE)
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
 
@@ -34,12 +38,14 @@ public class UserServiceImpl implements UserService {
         return resUserDTO;
     }
 
+    @OperationLog(type = OperationLogType.DELETE)
     @Override
     public void deleteUser(Long id) {
 
         log.info("删除用户，用户ID[{}]", id);
     }
 
+    @OperationLog(type = OperationLogType.QUERY)
     @Override
     public UserDTO findUserById(Long userId) {
 
