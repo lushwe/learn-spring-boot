@@ -1,6 +1,7 @@
 package com.lushwe.spring.boot.aop.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.lushwe.spring.boot.aop.annotation.CacheData;
 import com.lushwe.spring.boot.aop.annotation.OperationLog;
 import com.lushwe.spring.boot.aop.domain.UserDTO;
 import com.lushwe.spring.boot.aop.enums.OperationLogType;
