@@ -67,11 +67,10 @@
         <module>spring-boot-rabbitmq</module>
         <module>spring-boot-spi</module>
         <module>spring-boot-spi-use</module>
+        <module>spring-boot-rocketmq</module>
     </modules>
 
     <name>learn-spring-boot</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
