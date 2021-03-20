@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>learn-spring-boot</artifactId>
+        <groupId>com.lushwe.learn</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>spring-boot-dubbo</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>spring-boot-dubbo-api</module>
+        <module>spring-boot-dubbo-client</module>
+        <module>spring-boot-dubbo-server</module>
+        <module>spring-boot-dubbo-order</module>
+        <module>spring-boot-dubbo-client-sentinel</module>
+        <module>spring-boot-dubbo-provider-sentinel</module>
+        <module>spring-boot-dubbo-filter</module>
+    </modules>
+
+    <properties>
+        <dubbo.version>2.7.1</dubbo.version>
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <dependency>
+                <groupId>com.lushwe.learn</groupId>
+                <artifactId>spring-boot-dubbo-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <!-- Dubbo Spring Boot Starter -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>2.7.1</version>
+            </dependency>
+
+            <!-- Dubbo依赖 -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>
