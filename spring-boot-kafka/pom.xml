@@ -16,4 +16,14 @@
         <module>spring-boot-kafka-provider</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>2.6.3</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>
