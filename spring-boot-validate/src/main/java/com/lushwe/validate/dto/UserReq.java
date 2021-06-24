@@ -1,8 +1,11 @@
 package com.lushwe.validate.dto;
 
+import com.lushwe.validate.group.Insert;
+import com.lushwe.validate.group.Update;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -15,8 +18,14 @@ import javax.validation.constraints.NotNull;
 @Data
 public class UserReq {
 
-    @NotNull(message = "不能为空")
-    @Min(value = 1)
-    private Long userId;
+    @NotNull(groups = {Update.class}, message = "ID不能为空")
+    @Min(groups = {Update.class}, value = 1)
+    private Long id;
+
+    @NotBlank(groups = {Insert.class, Update.class}, message = "用户名不能为空")
+    private String userName;
+
+    @NotBlank(groups = {Insert.class, Update.class}, message = "用户地址不能为空")
+    private String userAddress;
 
 }
