@@ -2,6 +2,7 @@ package com.lushwe.spring.boot.aop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * 说明：启动类
@@ -15,6 +16,7 @@ public class AopBootstrap {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(AopBootstrap.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(AopBootstrap.class, args);
+        System.out.println();
     }
 }

@@ -11,9 +11,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.core.Ordered;
+import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.core.annotation.Order;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import java.util.Map;
 
@@ -28,6 +36,8 @@ import java.util.Map;
 @Order(value = Ordered.LOWEST_PRECEDENCE - 3)
 @Aspect
 public class OperationLogAspect {
+
+    private static final ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
 
     private final OperationLogService operationLogService;
 
@@ -49,11 +59,14 @@ public class OperationLogAspect {
      * @return
      * @throws Throwable
      */
-    @Around("execution(* com.lushwe.spring.boot.aop.service.impl..*(..)) && @annotation(operationLog)")
+    @Around("@annotation(operationLog)")
     public Object around(ProceedingJoinPoint joinPoint, OperationLog operationLog) throws Throwable {
 
         String code = null;
         try {
+
+            executeSpel(joinPoint, operationLog);
+
             code = insertOperationLog(joinPoint, operationLog);
             Object obj = joinPoint.proceed();
             updateOperationLogToSuccess(joinPoint, obj, code);
@@ -63,6 +76,20 @@ public class OperationLogAspect {
             updateOperationLogToFail(joinPoint, code);
             throw e;
         }
+    }
+
+    private void executeSpel(ProceedingJoinPoint joinPoint, OperationLog operationLog) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        String[] parameterNames = parameterNameDiscoverer.getParameterNames(signature.getMethod());
+        EvaluationContext context = new StandardEvaluationContext();
+        Object[] args = joinPoint.getArgs();
+        for (int i = 0; i < args.length; i++) {
+            context.setVariable(parameterNames[i], args[i]);
+        }
+        ExpressionParser parser = new SpelExpressionParser();
+        Expression expression = parser.parseExpression(operationLog.id());
+        Object value = expression.getValue(context);
+        log.info("===========value=========={}", value);
     }
 
     /**

@@ -27,4 +27,9 @@ public @interface OperationLog {
      */
     OperationLogType type();
 
+    /**
+     *
+     * @return
+     */
+    String id() default "#p0.id";
 }

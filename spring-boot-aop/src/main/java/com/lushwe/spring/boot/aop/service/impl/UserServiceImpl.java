@@ -1,8 +1,8 @@
 package com.lushwe.spring.boot.aop.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.lushwe.spring.boot.aop.annotation.CacheData;
 import com.lushwe.spring.boot.aop.annotation.OperationLog;
+import com.lushwe.spring.boot.aop.domain.UserBO;
 import com.lushwe.spring.boot.aop.domain.UserDTO;
 import com.lushwe.spring.boot.aop.enums.OperationLogType;
 import com.lushwe.spring.boot.aop.service.UserService;
@@ -20,6 +20,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserServiceImpl implements UserService {
 
+    public static final String KEY_SEP = "#";
+
     @OperationLog(type = OperationLogType.INSERT)
     @Override
     public void insertUser(UserDTO userDTO) {
@@ -27,7 +29,7 @@ public class UserServiceImpl implements UserService {
         log.info("新增用户，请求参数：{}", JSON.toJSONString(userDTO));
     }
 
-    @OperationLog(type = OperationLogType.UPDATE)
+    @OperationLog(type = OperationLogType.UPDATE, id = "#userDTO")
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
 
@@ -37,6 +39,24 @@ public class UserServiceImpl implements UserService {
         resUserDTO.setId(userDTO.getId());
         resUserDTO.setName(userDTO.getName());
         return resUserDTO;
+    }
+
+    @OperationLog(type = OperationLogType.UPDATE, id = "#userBO.userDTO.name")
+    @Override
+    public UserDTO updateUserTwo(UserDTO userDTO, UserBO userBO) {
+
+        log.info("更新用户，请求参数：{}", JSON.toJSONString(userDTO));
+
+        return null;
+    }
+
+    @OperationLog(type = OperationLogType.UPDATE, id = "T(com.lushwe.spring.boot.aop.service.impl.UserServiceImpl).KEY_SEP")
+    @Override
+    public UserDTO updateUserThree(UserDTO userDTO, UserBO userBO) {
+
+        log.info("更新用户，请求参数：{}", JSON.toJSONString(userDTO));
+
+        return null;
     }
 
     @OperationLog(type = OperationLogType.DELETE)
