@@ -1,5 +1,6 @@
 package com.lushwe.spring.boot.aop.service;
 
+import com.lushwe.spring.boot.aop.domain.UserBO;
 import com.lushwe.spring.boot.aop.domain.UserDTO;
 
 /**
@@ -25,6 +26,10 @@ public interface UserService {
      * @return
      */
     UserDTO updateUser(UserDTO userDTO);
+
+    UserDTO updateUserTwo(UserDTO userDTO, UserBO userBO);
+
+    UserDTO updateUserThree(UserDTO userDTO, UserBO userBO);
 
     /**
      * 删除用户

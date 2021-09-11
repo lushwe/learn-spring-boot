@@ -1,5 +1,6 @@
 package com.lushwe.spring.boot.aop.controller;
 
+import com.lushwe.spring.boot.aop.domain.UserBO;
 import com.lushwe.spring.boot.aop.domain.UserDTO;
 import com.lushwe.spring.boot.aop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,17 @@ public class UserController {
 
         userDTO.setId(id);
         userService.updateUser(userDTO);
+
+        UserBO userBO = new UserBO();
+        userBO.setId(22L);
+
+        UserDTO u = new UserDTO();
+        u.setId(33L);
+        u.setName("sansan");
+        userBO.setUserDTO(u);
+
+        userService.updateUserTwo(userDTO, userBO);
+        userService.updateUserThree(userDTO, userBO);
     }
 
     @DeleteMapping("/users/{id}")
