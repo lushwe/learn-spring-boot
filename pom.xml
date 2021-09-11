@@ -68,6 +68,7 @@
         <module>spring-boot-spi</module>
         <module>spring-boot-spi-use</module>
         <module>spring-boot-rocketmq</module>
+        <module>spring-boot-tx</module>
     </modules>
 
     <name>learn-spring-boot</name>
@@ -224,10 +225,22 @@
                 <artifactId>jedis</artifactId>
                 <version>2.9.1</version>
             </dependency>
+
+            <!-- 参数校验 -->
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>6.1.6.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.1.1.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>3.0.0</version>
             </dependency>
 
             <dependency>
