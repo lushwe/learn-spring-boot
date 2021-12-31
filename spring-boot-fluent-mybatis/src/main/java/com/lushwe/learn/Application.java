@@ -25,29 +25,29 @@ public class Application {
         UserMapper userMapper = context.getBean(UserMapper.class);
 
         // delete
-        int delete = userMapper.delete(userMapper.query().where.user_id().eq("1").end());
+        int delete = userMapper.delete(userMapper.query().where.userId().eq("1").end());
         System.out.println(delete);
 
         // insert
         UserEntity entity = new UserEntity();
-        entity.setUser_id("1");
-        entity.setUser_name("test");
+        entity.setUserId("1");
+        entity.setUserName("test");
         entity.setPassword("xxx");
-        entity.setDel_flag(0);
+        entity.setDelFlag(0);
         int insert = userMapper.insert(entity);
         System.out.println(insert);
 
         // findOne
         UserEntity userEntity = userMapper.findOne(userMapper.query()
                 .where.id().eq(1L)
-                .and.del_flag().eq(0)
+                .and.delFlag().eq(0)
                 .end());
         System.out.println(JSON.toJSONString(userEntity));
 
         // listEntity
         List<UserEntity> userEntities = userMapper.listEntity(userMapper.query()
-                .where.user_id().eq("1")
-                .and.del_flag().eq(0)
+                .where.userId().eq("1")
+                .and.delFlag().eq(0)
                 .end());
         System.out.println(JSON.toJSONString(userEntities));
     }

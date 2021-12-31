@@ -20,12 +20,12 @@ import java.util.Date;
 public class UserEntity extends RichEntity {
 
     private Long id;
-    private String user_id;
-    private String user_name;
+    private String userId;
+    private String userName;
     private String password;
     private String status;
     private String memo;
-    private Integer del_flag;
-    private Date create_time;
-    private Date update_time;
+    private Integer delFlag;
+    private Date createTime;
+    private Date updateTime;
 }
