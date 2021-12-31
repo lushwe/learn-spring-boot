@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Date;
 
 /**
- * TODO 写点注释吧
+ * UserEntity
  *
  * @author liusw
  * @version V1.0

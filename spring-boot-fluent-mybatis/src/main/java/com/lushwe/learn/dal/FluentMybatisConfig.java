@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * TODO 写点注释吧
+ * FluentMybatisConfig
  *
  * @author liusw
  * @version V1.0
