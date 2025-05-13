@@ -47,16 +47,12 @@
         <module>spring-boot-security-web</module>
         <module>spring-boot-security-oauth2</module>
         <module>spring-boot-jwt</module>
-        <module>spring-boot-seata</module>
-        <module>spring-boot-seata-tcc</module>
         <module>spring-boot-ifelse</module>
         <module>spring-boot-import</module>
         <module>spring-boot-condition</module>
-<!--        <module>spring-boot-api</module>-->
         <module>spring-boot-aspect</module>
         <module>spring-boot-reptile</module>
         <module>spring-boot-export</module>
-        <module>spring-boot-rabbit</module>
         <module>spring-boot-mymvc</module>
         <module>spring-boot-jar</module>
         <module>spring-boot-jdbc</module>
@@ -67,8 +63,21 @@
         <module>spring-boot-rabbitmq</module>
         <module>spring-boot-spi</module>
         <module>spring-boot-spi-use</module>
-        <module>spring-boot-rocketmq</module>
         <module>spring-boot-tx</module>
+        <module>spring-boot-retry</module>
+        <module>spring-boot-fluent-mybatis</module>
+        <module>spring-boot-argument-resolver</module>
+        <module>spring-boot-rest-template</module>
+        <module>spring-boot-cache</module>
+        <module>spring-boot-websocket</module>
+        <module>spring-boot-statemachine</module>
+        <module>spring-boot-xxl-job</module>
+        <module>spring-boot-sharding-jdbc</module>
+        <module>spring-boot-sentinel</module>
+        <module>spring-boot-webflux</module>
+        <module>spring-boot-check</module>
+        <module>spring-boot-rocketmq</module>
+        <module>spring-boot-freemarker</module>
     </modules>
 
     <name>learn-spring-boot</name>
@@ -100,6 +109,11 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
             <dependency>
@@ -200,6 +214,21 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-oxm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -207,7 +236,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.17</version>
+                <version>1.2.16</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -263,6 +292,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.2.54</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>2.9.2</version>
             </dependency>
 
         </dependencies>
